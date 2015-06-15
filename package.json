@@ -1,0 +1,25 @@
+{
+  "name": "meshblu-aim",
+  "repository": "octoblu/meshblu-aim",
+  "version": "1.0.0",
+  "main": "connector.js",
+  "scripts": {
+    "preinstall": "node -e \"try{require('./skip-install.js')}catch(e){}\"",
+    "start": "node command.js",
+    "test": "exit 0"
+  },
+  "dependencies": {
+    "coffee-script": "^1.9.3",
+    "debug": "^2.2.0",
+    "meshblu": "^1.22.0"
+  },
+  "bundledDependencies": [
+    "request",
+    "tar",
+    "fstream"
+  ],
+  "keywords": [
+    "meshblu-connector",
+    "gateblu"
+  ]
+}
