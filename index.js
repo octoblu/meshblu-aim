@@ -7,9 +7,10 @@ var Aim = require('./AIM');
 var MESSAGE_SCHEMA = {
   type: 'object',
   properties: {
-    payload: {
-      type: 'object',
-      required: true
+    action: {
+      type: 'string',
+      required: true,
+      enum : ['GetViewerEvents', 'GetAudienceStatus', 'GetAudienceDetails']
     }
   }
 };
@@ -42,13 +43,31 @@ function Plugin(){
 util.inherits(Plugin, EventEmitter);
 
 Plugin.prototype.onMessage = function(message){
-  var payload = message.payload;
-  //this.emit('message', {devices: ['*'], topic: 'echo', payload: payload});
+  var self = this;
+  var action = message.action || message.payload.action;
+  if(action){
+    if(action === 'GetViewerEvents'){
+      self.aim.getViewerEvents(function(viewerEvents){
+        debug('The viewer events are', viewerEvents);
+        self.emit('data', viewerEvents);
+      });
+    } else if (action === 'GetAudienceStatus'){
+      self.aim.getAudienceStatus(function(audienceStatus){
+        debug('The audience status is', audienceStatus);
+        self.emit('data', audienceStatus);
+      });
+    } else if(action === 'GetAudienceDetails'){
+      self.aim.getAudienceStatus(function(audienceStatus){
+        debug('The audience status is', audienceStatus);
+        self.emit('data', audienceStatus);
+      });
+    }
+  }
 };
 
 Plugin.prototype.onConfig = function(device){
   this.setOptions(device.options||{});
-  this.aim = new Aim(this.options, this.aimCallback);
+  this.aim = new Aim(this.options);
 };
 
 Plugin.prototype.setOptions = function(options){

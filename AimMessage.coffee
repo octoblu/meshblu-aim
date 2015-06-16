@@ -1,6 +1,7 @@
 ViewerDetails = require './ViewerDetails'
 debug = require('debug')('meshblu-aim')
 EVENT_AUDIENCE_DETAILS = 131
+EVENT_AUDIENCE_STATUS = 130
 EVENT_VIEWER = 135
 
 class AimMessage
