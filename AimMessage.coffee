@@ -5,9 +5,8 @@ EVENT_VIEWER = 135
 
 class AimMessage
   constructor: () ->
-    @viewerDetails = new ViewerDetails
 
-  parse: (data) =>
+  @parse: (data) =>
     debug "got #{data.length} bytes"
     debug "data #{data.toString('hex')}"
 
@@ -29,6 +28,11 @@ class AimMessage
     debug "payload size is: #{payloadSize}"
     debug "payload: #{payload.toString('hex')} [len=#{payload.length}]"
 
+    if payload.length % 20 != 0
+      result.payloadInfo = payload.readUInt8 0
+      debug 'payloadInfo =', result.payloadInfo
+      payload = payload.slice 1, payload.length
+
     if result.type == EVENT_AUDIENCE_DETAILS || result.type == EVENT_VIEWER
       result = @getAudienceDetails payload, result
     else
@@ -36,16 +40,11 @@ class AimMessage
 
     return result
 
-  getAudienceDetails: (data, result) =>
-
-    if data.length % 20 != 0
-      result.payloadInfo = data.readUInt8 0
-      debug 'payloadInfo =', result.payloadInfo
-      data = data.slice 1, data.length
+  @getAudienceDetails: (payload, result) =>
 
     result.details = []
 
-    while [ data, details ] = @viewerDetails.parse data
+    while [ payload, details ] = ViewerDetails.parse payload
       if !details
         break
       result.details.push details

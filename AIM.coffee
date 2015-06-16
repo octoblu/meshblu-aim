@@ -18,8 +18,6 @@ class AIM
         0x01 #payload
       ]
 
-    message = new AimMessage()
-
     client = net.connect
       host: config?.host || '192.168.100.8',
       port: config?.port || 12500, ->
@@ -30,6 +28,6 @@ class AIM
       debug "AIM connected!"
 
     client.on 'data', (data)->
-      callback(message.parse data)
+      callback(AimMessage.parse data)
 
 module.exports = AIM

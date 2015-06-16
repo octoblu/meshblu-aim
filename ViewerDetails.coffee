@@ -1,7 +1,7 @@
 class ViewerDetails
   constructor: () ->
 
-  parse: (data) =>
+  @parse: (data) =>
     if data.length < 20
       return [null,null]
     result = {}
