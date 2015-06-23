@@ -10,7 +10,12 @@ var MESSAGE_SCHEMA = {
     action: {
       type: 'string',
       required: true,
-      enum : ['GetViewerEvents', 'GetAudienceStatus', 'GetAudienceDetails', 'StopViewerEvents']
+      enum : [
+        'GetViewerEvents',
+        'GetAudienceStatus',
+        'GetAudienceDetails',
+        'StopViewerEvents'
+      ]
     }
   }
 };

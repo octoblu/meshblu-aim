@@ -8,7 +8,6 @@ MESSAGE_GET_VIEWER_EVENTS = 5
 
 class AIM
   constructor: (config, callback=->) ->
-
     request = new Buffer [
         0xFA, #magic word part 1
         0xCE, #magic word part 2
@@ -66,13 +65,29 @@ class AIM
           0x01, #version
           MESSAGE_GET_VIEWER_EVENTS, #command
           0x01, #payload size
-          0x01 #payload
+          0x01 #payload - 1 is a start event
         ]
 
       @client.write request, (response)
       @client.on 'data', (data) ->
         debug 'GetViewerEvents data received', data.toString('hex')
         callback(AimMessage.parse data)
+
+    stopViewerEvents: (callback=->) =>
+      request = new Buffer [
+        0xFA, #magic word part 1
+        0xCE, #magic word part 2
+        0x01, #version
+        MESSAGE_GET_VIEWER_EVENTS, #command
+        0x01, #payload size
+        0x00 #payload - 0 is a stop event
+      ]
+
+      @client.write request, (response)
+      @client.on 'data', (data) ->
+        debug 'GetViewerEvents data received', data.toString('hex')
+        callback(AimMessage.parse data)
+
 
 
 
