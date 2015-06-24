@@ -47,8 +47,12 @@ Plugin.prototype.onMessage = function(message){
 };
 
 Plugin.prototype.onConfig = function(device){
+  var self = this;
+  debug("onConfig", device.options);
   this.setOptions(device.options||{});
-  this.aim = new Aim(this.options, this.aimCallback);
+  if(self.options.host && self.options.port){
+    this.aim = new Aim(this.options, this.aimCallback);
+  }
 };
 
 Plugin.prototype.setOptions = function(options){
