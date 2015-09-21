@@ -16,9 +16,9 @@ deploy:
     region: us-west-2
     skip_cleanup: true
     detect_encoding: true
-    access_key_id: replace-me
+    access_key_id: AKIAJH2D5IPIRHYJT5IA
     secret_access_key:
-      secure: replace-me
+      secure: "PqZDUWBiCFL/xyVqOEZLYsMW+YgWtFbI8EEsZGBwujXfdsx6erEqHYKBvqhrOHuE0S0e6P42xIu616pXcoKs8K6lfLMvzu9shOQSPbiFG5nDXjuco/AyqL/8TCKGX/TG2S61c1HW7MqxjJbRTDqMks1z24xeqyzshMh7rGGCHFtYOoaBt3XMPn8XK8mLQTRV7ESNViJMt7JuvdsU+u1tdVlcvfDh/efvUOl/6X3zoCMbOpIl7tkdCodf6Cj7gmhRpPNipoCJNQg0fWuFCAGhDCcRJTAN5/HAktHe+FxoK6m2S/PzjI0fUDrlTBABh6iPCTN/JmiM2F0BCoGQgKRsh5wc04UOtxgkOeljIpBjEFnhuG80g6NQ0d9yKVFElR4UA9/eayaErsZL9go5W2UYy5W90nlsnCBuKdefR++lfDYqq2F3Th9VDFpTkJ2oZNCwnm2c63s/scL735W/hTA/CBTMP8X1Cy1jWDi1/QoYJZRYZo2cxBpVrnL4TySuZlB/lJsrgIOVDsKM+Np5NVU8FDTPva3egHWoYf8MQes+k23wUrTowLD/uziIbJVeJFNmnfBCkrPs/UshSpuvj9H17Eopd+tay3u6hyXjJTKDl7DArcU3ceJ2kECw6qPXWyULZt8G6MJwqoav3y8uUPWXaT4bLz475gOf8E7jUxfdC5M="
     bucket: octoblu-cdn
     local-dir: deploy
     upload-dir: js
@@ -28,9 +28,9 @@ deploy:
   - provider: npm
     skip_cleanup: true
     clean_up: false
-    email: replace-me
+    email: serveradmin@octoblu.com
     api_key:
-      secure: replace-me
+      secure: "kxCMgfo//4cMeLYU24M7uvipn7TSFpTO4ehHyGLRyYUcApJ3fLg86qQIqsncUDGgcb73VXPh8K/nx2ErFkYZJdh1o6RA6C5J6DmaQOD2We27F3o+AsLNOSELSZ+nQ0wn4iniVh9H+sielOaW4D1gjGNOHJTYUqBr9QvVRAsXLU8kCqBx3x8kT7BjGbx30HG9jw8rBZtaFZTqaz7m/OPnucQaGml4bRzva3qsTgaikucDFDOIWi+OqUN1d1/3zR7x0/dqk7/9QeYZN6uKAc5+o2c06oxIRT8FQTEBWs9wrdcNuehSS93WEVR4LQYVGEEQsEKrUygEuzbSLdHNgKq8Ez345se3XSerFmJzQzFJsv1RKGiSegfqoeYmZVH0jtOjrvO/+QUJQ6VWA2pz7v+eMW6V2WQOQg6fY+ax/9bhRq2hdB3QLGclUhEuNAlkIWHf9+4ngQUrtdaEUoi2wJ+rW7ShM44GvRHn4mnObUmAcSo8iTvhAxlEizChbJpm6ARcqpa1rSuWOZtZNDwveM5FU7r8Q+VgwBZUWsNLdO/5Pt13Vsn2Atux4VHCyRriT+kv/ocHe9vP3JuQrjyUS9H/NoJe2miQLRgh0gh5Stn/t+jiJAPAzW9mCwv112n+NhJOnVjgfPRRrvspdIuc/AjEnwgE6ojgAf99taHpDyhfqvc="
     on:
       tags: true
       all_branches: true
