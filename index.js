@@ -1,8 +1,8 @@
 'use strict';
-var util = require('util');
+var util         = require('util');
+var Aim          = require('./AIM.coffee');
+var debug        = require('debug')('meshblu-aim');
 var EventEmitter = require('events').EventEmitter;
-var debug = require('debug')('meshblu-aim');
-var Aim = require('./AIM');
 
 var MESSAGE_SCHEMA = {
   type: 'object',
@@ -29,40 +29,41 @@ var OPTIONS_SCHEMA = {
   }
 };
 
-var self;
-
 function Plugin(){
-  self = this;
-  this.options = {};
-  this.messageSchema = MESSAGE_SCHEMA;
-  this.optionsSchema = OPTIONS_SCHEMA;
-  return this;
+  var self = this;
+  self.options = {};
+  self.messageSchema = MESSAGE_SCHEMA;
+  self.optionsSchema = OPTIONS_SCHEMA;
+  return self;
 }
 
 util.inherits(Plugin, EventEmitter);
 
 Plugin.prototype.onMessage = function(message){
   var payload = message.payload;
-  //this.emit('message', {devices: ['*'], topic: 'echo', payload: payload});
 };
 
 Plugin.prototype.onConfig = function(device){
   var self = this;
-  debug("onConfig", device.options);
-  this.setOptions(device.options||{});
-  if(self.options.host && self.options.port){
-    this.aim = new Aim(this.options, this.aimCallback);
+  debug('on config', device.options);
+  self.setOptions(device.options);
+
+  if(!self.options.host || !self.options.port){
+    debug('missing options');
+    return;
   }
+  self.aim = new Aim(self.options, self.aimCallback);
 };
 
 Plugin.prototype.setOptions = function(options){
-  this.options = options;
+  this.options = options || {};
 };
 
 Plugin.prototype.aimCallback = function(message){
-  debug('Got a message of ', JSON.stringify(message,null,2));
+  var self = this;
+  debug('got a message of ', JSON.stringify(message,null,2));
   self.emit('message', {devices: ['*'], topic: 'message', payload: message});
-}
+};
 
 module.exports = {
   messageSchema: MESSAGE_SCHEMA,

@@ -1,4 +1,4 @@
-ViewerDetails = require './ViewerDetails'
+ViewerDetails = require './ViewerDetails.coffee'
 debug = require('debug')('meshblu-aim')
 EVENT_AUDIENCE_DETAILS = 131
 EVENT_VIEWER = 135

@@ -1,5 +1,5 @@
 net = require 'net'
-AimMessage = require './AimMessage'
+AimMessage = require './AimMessage.coffee'
 debug = require('debug')('meshblu-aim')
 
 MESSAGE_GET_AUDIENCE_STATUS = 0
